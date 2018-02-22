@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>WeatherApp</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-app="weatherApp"
+      ng-controller="MainCtrl as vm">
+    <nav class="navbar navbar-light bg-light justify-content-between">
+        <a class="navbar-brand">WeatherApp</a>
+        <form ng-hide="vm.isLoggedIn()" class="form-inline navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="username (email)" ng-model="vm.userData.email" />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="password" ng-model="vm.userData.password" />
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="vm.login()">Login</button>
+            <button class="btn btn-default" ng-click="vm.registerUser()">Register</button>
+            <div ng-show="vm.message">{{vm.message}}</div>
+        </form>
+        <button ng-hide="!vm.isLoggedIn()" ng-click="vm.logout()">Logout</button>
+    </nav>
+
+    <div class="container">
+        
+        <div ng-if="!vm.isLoggedIn()" ng-include="'app/weather/weatherListView.html'"></div>
+        <div ng-if="vm.isLoggedIn()" ng-controller="WeatherEditCtrl as vm">
+
+            <div ng-include="'app/weather/weatherEditPanelView.html'"></div>
+
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{vm.title}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                            <div ng-include="'app/weather/weatherEditView.html'"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="Scripts/jquery-3.0.0.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="app/app.js"></script>
+    <script src="common/common.services.js"></script>
+    <script src="common/weatherResource.js"></script>
+    <script src="common/cityResource.js"></script>
+    <script src="common/userAccount.js"></script>
+    <script src="common/currentUser.js"></script>
+    <script src="app/weather/weatherListCtrl.js"></script>
+    <script src="app/weather/weatherEditCtrl.js"></script>
+    <script src="app/mainCtrl.js"></script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<div class="panel panel-primary" >
+    <div class="panel-body">
+
+        <div class="row" style="margin:20px 0 15px 0;">
+            <div class="col-2 form-inline">
+                <label for="filter">City: </label>
+                <select class="form-control" ng-model="vm.filterBy" >
+                    <option id="filter" value="{{city.name}}" ng-repeat="city in vm.cities">{{city.name}}</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target=".bd-example-modal-lg" ng-click="vm.setTitle()">New Weather</button>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>City</th>
+                        <th>Date</th>
+                        <th>Min</th>
+                        <th>Max</th>
+                        <th>Real Feel</th>
+                        <th>Condition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="weather in vm.weathers | filter:vm.filterBy ">
+                        <!--<script type="text/ng-template" id="display">-->
+                        <td>{{ weather.city.name}}</td>
+                        <td>{{ weather.date | date }}</td>
+                        <td>{{ weather.tempMin }}</td>
+                        <td>{{ weather.tempMax }}</td>
+                        <td>{{ weather.realFeel }}</td>
+                        <td>{{ weather.condition }}</td>
+                        <td><button type="button" class="btn" ng-click="vm.edit(weather);">Edit</button></td>
+                        <!--</script>-->
+                        <!--<script type="text/ng-template" id="edit">
+                        <td><input type="text" readonly ng-model=weather.city.name class="form-control input-sm"/></td>
+                        <td><input type="text" ng-model=weather.date class="form-control input-sm"/></td>
+                        <td><input type="text" ng-model=weather.tempMin class="form-control input-sm"/></td>
+                        <td><input type="text" ng-model=weather.tempMax class="form-control input-sm"/></td>
+                        <td><input type="text" ng-model=weather.realFeel class="form-control input-sm"/></td>
+                        <td><input type="text" ng-model=weather.condition class="form-control input-sm"/></td>
+                        <td><button class="btn" ng-click="update(weather)">Edit</button>
+                            <button class="btn btn-danger" ng-click="reset()">Cancel</button>
+                        </td>
+                    </script>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

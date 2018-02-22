@@ -1,0 +1,118 @@
+<form class="form-horizontal" name="weatherForm" novalidate>
+    <fieldset>
+        <div class="form-group"
+             ng-show="vm.message">
+            <div class="col-md-6">
+                <pre style="font: inherit">{{   vm.message }}</pre>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="control-label" for="">City</label>
+                        <select class="form-control" ng-model="vm.weather.city" ng-options="city.name for city in vm.cities" required>
+                            <option value="">-- choose city --</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="control-label" for="inputTempMax">Maximum</label>
+                        <input class="form-control"
+                               id="inputTempMax"
+                               name="inputTempMax"
+                               type="text"
+                               placeholder="Maximum"
+                               ng-model="vm.weather.tempMax"
+                                />
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+
+                    <div class="form-group" ng-class="{'has-error':weatherForm.inputCondition.$invalid && weatherForm.inputCondition.$dirty}">
+                        <label class="control-label" for="inputCondition">Weather Condition</label>
+
+                        <input class="form-control"
+                               id="inputCondition"
+                               name="inputCondition"
+                               type="text"
+                               placeholder="Sunny"
+                               ng-model="vm.weather.condition"
+                               />
+
+                        <span class="help-block has-error" ng-show="weatherForm.inputCondition.$invalid ">
+                            Weather Condition is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="control-label" for="inputTempMin">Minimum</label>
+
+                        <input class="form-control"
+                               id="inputTempMin"
+                               name="inputTempMin"
+                               type="text"
+                               placeholder="Minimum"
+                               ng-model="vm.weather.tempMin"
+                                />
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="control-label" for="inputDate">Date</label>
+                        <input class="form-control"
+                               type="date"
+                               id="inputDate"
+                               name="inputDate"
+                               datetime="yyyy-MM-dd"
+                               ng-model="vm.weather.date"
+                               placeholder="yyyy-MM-dd" />
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label class="control-label" for="inputRealFeel">Real Feel</label>
+                        <input class="form-control"
+                               id="inputRealFeel"
+                               name="inputRealFeel"
+                               type="text"
+                               placeholder="Real Feel"
+                               ng-model="vm.weather.realFeel"
+                               required />
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            ng-click="vm.submit()"
+                            ng-disabled="weatherForm.$invalid">
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                            style="width:70px"
+                            ng-click="vm.cancel(weatherForm)">
+                        Cancel
+                    </button>
+                </span>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
