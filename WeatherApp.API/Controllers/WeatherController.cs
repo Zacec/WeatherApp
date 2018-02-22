@@ -12,7 +12,7 @@ using WeatherApp.Model;
 namespace WeatherApp.API.Controllers
 {
     [AllowCors()]//[EnableCors(origins: "http://localhost:50916", headers: "*", methods: "*")]
-    public class WeathersController : ApiController
+    public class WeatherController : ApiController
     {
         private WeatherManager _WeatherManager = new WeatherManager();
 
@@ -53,6 +53,7 @@ namespace WeatherApp.API.Controllers
 
         // PUT: api/Weathers/5
         [ResponseType(typeof(Weather))]
+        [Authorize()]
         public IHttpActionResult Put(int id, [FromBody] Weather weather)
         {
             if (!ModelState.IsValid)
@@ -90,6 +91,7 @@ namespace WeatherApp.API.Controllers
 
         // POST: api/Weathers
         [ResponseType(typeof(Weather))]
+        [Authorize()]
         public IHttpActionResult Post([FromBody]Weather weather)
         {
             if (!ModelState.IsValid)
@@ -114,7 +116,7 @@ namespace WeatherApp.API.Controllers
         }
 
         // DELETE: api/Weathers/5
-        //[ResponseType(typeof(Weather))]
+        [Authorize()]
         public IHttpActionResult Delete(int id)
         {
             _WeatherManager.Delete(id);
